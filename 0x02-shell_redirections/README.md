@@ -1,1 +1,1 @@
-Display all lines of the file
+19. A to Z
