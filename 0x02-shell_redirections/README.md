@@ -1,1 +1,1 @@
-17. I hate bins
+Display all lines of the file
