@@ -1,1 +1,1 @@
-Create a script that takes a list of words as input and prints only words that appear exactly once
+14. It must be in that file
