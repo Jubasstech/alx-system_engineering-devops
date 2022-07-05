@@ -1,1 +1,1 @@
-Acrostic
+26. The biggest fan
