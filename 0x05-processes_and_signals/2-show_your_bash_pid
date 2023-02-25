@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-# script using pgrep for finding pids!
-pgrep -l "bash"
+# script to find processes with 'bash' in their name
+# shellcheck disable=SC2009
+ps -a u | grep "bash"
