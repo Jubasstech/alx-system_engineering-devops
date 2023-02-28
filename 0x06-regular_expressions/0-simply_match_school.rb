@@ -1,2 +1,4 @@
 #!/usr/bin/env ruby
-puts ARGV[0].scan(/codingschool/).join
+
+regex = /School/
+puts ARGV[0].scan(regex).join
