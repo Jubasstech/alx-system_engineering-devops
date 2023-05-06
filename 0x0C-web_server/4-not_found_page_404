@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Installs and sets up a simple Nginx web server on web-01
+ROOT_PATH="/var/www/html"
+ROOT_FILE_PATH="$ROOT_PATH/index.html"
+ERROR_FILE="/error.html"
+ERROR_FILE_PATH="$ROOT_PATH$ERROR_FILE"
+SERVER_BLOCK_PATH="/etc/nginx/sites-available/default"
+
+REDIRECTION="\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4\$request_uri;\n\t}"
+CUSTOM_ERROR="\n\terror_page 404 $ERROR_FILE;\n\tlocation = $ERROR_FILE {\n\t\troot $ROOT_PATH;\n\t\tinternal;\n\t}"
+
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo touch "$ROOT_FILE_PATH"
+sudo touch "$ERROR_FILE_PATH"
+sudo chmod a+w "$ROOT_FILE_PATH" "$ERROR_FILE_PATH"
+echo "Hello World!" > "$ROOT_FILE_PATH"
+echo "Ceci n'est pas une page" > "$ERROR_FILE_PATH"
+sudo chmod a-w "$ROOT_FILE_PATH" "$ERROR_FILE_PATH"
+
+# Inserting changes into the folder
+sudo sed -i "46 a\ $REDIRECTION" "$SERVER_BLOCK_PATH"
+sudo sed -i "50 a\ $CUSTOM_ERROR" "$SERVER_BLOCK_PATH"
+
+# Restart server
+sudo service nginx restart
